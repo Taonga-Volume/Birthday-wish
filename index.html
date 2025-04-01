@@ -146,10 +146,11 @@
 <body>
 
     <!-- Opening Animation -->
-    <div class="opening">✨You're 43 to be Exact ✨</div>
+    <div class="opening">✨You're 20 to be Exact ✨</div>
 
     <div class="slider">
         <div class="slides">
+            <!-- First Slide with Happy Birthday Message -->
             <img src="WhatsApp Image 2025-04-01 at 18.28.36_1d8ff6c9.jpg" alt="Memory 1">
             <img src="IMG-20250331-WA0032.jpg" alt="Memory 2">
             <img src="WhatsApp Image 2025-04-01 at 18.28.31_675ed774.jpg" alt="Memory 3">
@@ -161,10 +162,10 @@
         <button class="next" onclick="nextSlide()">&#10095;</button>
     </div>
 
-    <div class="text-container">
+    <!-- Birthday Text and Message - Only on the First Three Slides -->
+    <div class="text-container" id="birthdayText">
         <div class="birthday-text">🎉 Happy Birthday, Kangwa! 🎂</div>
         <div class="message-text">Wishing you a day filled with love, laughter, and all the happiness in the world! 💖</div>
-     
     </div>
 
     <!-- Music Controls -->
@@ -194,6 +195,7 @@
         let slides = document.querySelector(".slides");
         let totalSlides = slides.children.length;
         let gifBox = document.getElementById("gifBox");
+        let birthdayText = document.getElementById("birthdayText");
 
         function showSlide(n) {
             if (n >= totalSlides) index = 0;
@@ -201,6 +203,13 @@
             else index = n;
 
             slides.style.transform = `translateX(-${index * 100}vw)`;
+
+            // Show Birthday Text only on the first three slides
+            if (index >= 0 && index <= 2) {
+                birthdayText.style.display = "block";
+            } else {
+                birthdayText.style.display = "none";
+            }
 
             // Show GIF box only on the last slide
             if (index === totalSlides - 1) {
@@ -214,7 +223,7 @@
         function prevSlide() { showSlide(index - 1); }
 
         // Auto-slide every 5 seconds
-        setInterval(() => nextSlide(), 5000);
+        setInterval(() => nextSlide(), 3000);
 
         // Music Control
         let music = document.getElementById("bg-music");
